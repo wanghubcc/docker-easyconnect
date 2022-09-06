@@ -19,7 +19,8 @@ do
 		fake-hwaddr-run /usr/share/sangfor/EasyConnect/resources/bin/ECAgent &
 		sleep 1
 		fake-hwaddr-run easyconn login -t autologin
-		pidof svpnservice > /dev/null || fake-hwaddr-run bash -c "exec easyconn login $CLI_OPTS"
+		info=`cat /usr/conf/ec.conf`
+		pidof svpnservice > /dev/null || fake-hwaddr-run bash -c "exec easyconn login $info"
 		# # 重启一下 tinyproxy
 		# service tinyproxy restart
 		while pidof svpnservice > /dev/null ; do
