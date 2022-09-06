@@ -3,7 +3,7 @@ name: Build And Push Docker Image
 on: workflow_dispatch
 
 env:
-  IMAGE_NAME: hagb/docker-easyconnect
+  IMAGE_NAME: zhaoqiwang/docker-easyconnect
 
 jobs:
   build:
@@ -34,13 +34,14 @@ jobs:
 
           docker-build ${{ env.IMAGE_NAME }}:${prefix}cli -f Dockerfile.cli .
 
-          docker-build ${{ env.IMAGE_NAME }}:${prefix}7.6.3 --build-arg EC_URL=$(cat ec_urls/7.6.3.txt) -f Dockerfile .
-          docker-build ${{ env.IMAGE_NAME }}:${prefix}7.6.7 --build-arg EC_URL=$(cat ec_urls/7.6.7.txt) -f Dockerfile .
+          #docker-build ${{ env.IMAGE_NAME }}:${prefix}7.6.3 --build-arg EC_URL=$(cat ec_urls/7.6.3.txt) -f Dockerfile .
+          #docker-build ${{ env.IMAGE_NAME }}:${prefix}7.6.7 --build-arg EC_URL=$(cat ec_urls/7.6.7.txt) -f Dockerfile .
 
-          docker-build ${{ env.IMAGE_NAME }}:${prefix}vncless-7.6.3 --build-arg EC_URL=$(cat ec_urls/7.6.3.txt) -f Dockerfile.vncless .
-          docker-build ${{ env.IMAGE_NAME }}:${prefix}vncless-7.6.7 --build-arg EC_URL=$(cat ec_urls/7.6.7.txt) -f Dockerfile.vncless .
+          #docker-build ${{ env.IMAGE_NAME }}:${prefix}vncless-7.6.3 --build-arg EC_URL=$(cat ec_urls/7.6.3.txt) -f Dockerfile.vncless .
+          #docker-build ${{ env.IMAGE_NAME }}:${prefix}vncless-7.6.7 --build-arg EC_URL=$(cat ec_urls/7.6.7.txt) -f Dockerfile.vncless .
 
-          docker tag ${{ env.IMAGE_NAME }}:${prefix}7.6.3 ${{ env.IMAGE_NAME }}:${latest_name}
+          #docker tag ${{ env.IMAGE_NAME }}:${prefix}7.6.3 ${{ env.IMAGE_NAME }}:${latest_name}
+          docker tag ${{ env.IMAGE_NAME }}:${prefix}cli ${{ env.IMAGE_NAME }}:${latest_name}
 
       - name: Push Docker image
         run: |
