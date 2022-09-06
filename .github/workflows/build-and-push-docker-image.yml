@@ -34,6 +34,8 @@ jobs:
 
           docker-build ${{ env.IMAGE_NAME }}:${prefix}cli -f Dockerfile.cli .
 
+          docker-build ${{ env.IMAGE_NAME }}:${prefix}cli-autossh -f Dockerfile.cli-autossh .
+
           docker-build ${{ env.IMAGE_NAME }}:${prefix}7.6.3 --build-arg EC_URL=$(cat ec_urls/7.6.3.txt) -f Dockerfile .
           docker-build ${{ env.IMAGE_NAME }}:${prefix}7.6.7 --build-arg EC_URL=$(cat ec_urls/7.6.7.txt) -f Dockerfile .
 
